@@ -121,9 +121,9 @@ client.on('group.add', async ctx => {
       var pic = await Func.fetchBuffer(await sock.profilePictureUrl(ctx.jid, 'image'))
    }
 
-   /* localonly to remove new member when the number not from indonesia */
+   /* localonly to remove new member when the number not from Kenya */
    if (groupSet && groupSet.localonly) {
-      if (global.db.users.some(v => v.jid == ctx.member) && !global.db.users.find(v => v.jid == ctx.member).whitelist && !ctx.member.startsWith('62') || !ctx.member.startsWith('62')) {
+      if (global.db.users.some(v => v.jid == ctx.member) && !global.db.users.find(v => v.jid == ctx.member).whitelist && !ctx.member.startsWith('254') || !ctx.member.startsWith('254')) {
          sock.reply(ctx.jid, Func.texted('bold', `Sorry @${ctx.member.split`@`[0]}, this group is only for indonesian people and you will removed automatically.`))
          sock.updateBlockStatus(member, 'block')
          return await Func.delay(2000).then(() => sock.groupParticipantsUpdate(ctx.jid, [ctx.member], 'remove'))
