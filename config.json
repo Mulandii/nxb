@@ -1,6 +1,6 @@
 {
-   "owner": "6285887776722",
-   "owner_name": "Wildan Izzudin",
+   "owner": "254796032440",
+   "owner_name": "Mujahideen",
    "database": "data",
    "limit": 15,
    "ram_limit": "900mb",
@@ -12,8 +12,8 @@
    "blocks": ["994", "91", "92"],
    "evaluate_chars":  ["=>", "~>", "<", ">", "$"],
    "pairing": {
-      "state": true,
-      "number": 62857035017444
+      "state": false,
+      "number": 254796032440
    },
    "replit_url": ""
 }
