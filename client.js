@@ -21,12 +21,6 @@ const client = new Baileys({
    version: [2, 2318, 11]
 })
 
-/* default menu sound */
-if (budy.match(`help`)) {
-					result = fs.readFileSync(`./spikey.mp3`);
-					client.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4', ptt: true }, { quoted: m }); 
-					}
-
 /* starting to connect */
 client.on('connect', async res => {
    /* load database */
