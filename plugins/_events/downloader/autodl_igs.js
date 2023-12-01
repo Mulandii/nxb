@@ -9,7 +9,7 @@ exports.run = {
    }) => {
       try {
          const regex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:stories\/)(?:\S+)?$/;
-         const extract = body ? Func.generateLink(body) : null
+         const extract =  (m.quoted && m.quoted.text) ? Func.generateLink(m.quoted.text) : body ? Func.generateLink(body) : null
          if (extract) {
             const links = extract.filter(v => v.match(regex))
             if (links.length != 0) {
@@ -27,8 +27,9 @@ exports.run = {
                   	url: link
                   })
                   if (!json.status) return client.reply(m.chat, `${global.status.fail} : [ @${link.split('/')[4]} ]`, m)
-                  for (let i = 0; i < json.data.length; i++) {
-                     client.sendFile(m.chat, json.data[i].url, Func.filename(json.data[i].type), `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
+                  for (let v of json.data) {
+                     const file = await Func.getFile(v.url)
+                     client.sendFile(m.chat, v.url, Func.filename(/mp4|bin/.test(file.extension) ? 'mp4' : 'jpg'), `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m)
                      await Func.delay(1500)
                   }
                })
