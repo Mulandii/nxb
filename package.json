@@ -23,6 +23,7 @@
    "dependencies":{
       "@colors/colors": "^1.6.0",
       "@neoxr/wb": "^1.24.37",
+      "@whisckeysockets/baileys": "latest",
       "bytes": "^3.1.2",
       "cfonts": "3.1.1",
       "express": "~4.16.4",
