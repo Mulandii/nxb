@@ -1,6 +1,6 @@
 const fs = require('fs')
 exports.run = {
-   usage: ['menu', 'help', 'command'],
+   usage: ['evil', 'help', 'command'],
    async: async (m, {
       client,
       text,
