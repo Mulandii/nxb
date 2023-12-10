@@ -1,6 +1,3 @@
-"use strict";
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0'
-require('events').EventEmitter.defaultMaxListeners = 500
 const { Baileys, MongoDB, PostgreSQL, Scandir, Function: Func } = new(require('@neoxr/wb'))
 const spinnies = new(require('spinnies'))(),
    fs = require('fs'),
@@ -113,8 +110,29 @@ client.on('presence.update', update => {
 
 client.on('group.add', async ctx => {
    const sock = client.sock
-   const text = `Thanks +tag for joining into +grup group.`
-   const groupSet = global.db.groups.find(v => v.jid == ctx.jid)
+   const welcomeMessages = [
+      `Thanks +tag for joining into +grup group.`,
+      `Welcome +tag! We're thrilled to have you in +grup.`,
+      `Hey +tag, buckle up! You've just entered +grup territory.`,
+      `Greetings +tag! Prepare to embark on an epic journey in +grup.`,
+      `Hi +tag, your presence just made +grup 10 times cooler!`,
+      `Hello +tag! Get ready for an adventure in +grup.`,
+      `A warm welcome to +tag! The +grup community is now complete.`,
+      `Thanks for joining +grup, +tag! Expect the unexpected.`,
+      `Hello +tag! Your journey in +grup begins now.`,
+      `Welcome +tag! +grup just got a whole lot more awesome.`,
+      `Hi there, +tag! Get ready for some serious fun in +grup.`,
+      `Thanks for choosing +grup, +tag! Let the good times roll.`,
+      `Hello +tag! Your VIP pass to +grup is now activated.`,
+      `Welcome +tag! +grup is buzzing with excitement.`,
+      `Hey +tag! +grup just became the coolest place on the internet.`,
+      `Thanks +tag! +grup is now officially epic with you here.`,
+      `Hello +tag! Brace yourself for awesomeness in +grup.`,
+      `Welcome +tag! The party in +grup just leveled up.`,
+      `Hi +tag! +grup welcomes you with open arms and high-fives.`,
+      `Prepare for greatness, +tag! Your presence elevates +grup.`,
+   ];
+   const text = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
    try {
       var pic = await Func.fetchBuffer(await sock.profilePictureUrl(ctx.member, 'image'))
    } catch {
