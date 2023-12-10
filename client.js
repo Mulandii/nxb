@@ -110,6 +110,7 @@ client.on('presence.update', update => {
 
 client.on('group.add', async ctx => {
    const sock = client.sock
+   const groupSet = global.db.groups.find(v => v.jid == ctx.jid);
    const welcomeMessages = [
       `Thanks +tag for joining into +grup group.`,
       `Welcome +tag! We're thrilled to have you in +grup.`,
@@ -142,7 +143,7 @@ client.on('group.add', async ctx => {
    /* localonly to remove new member when the number not from Kenya */
    if (groupSet && groupSet.localonly) {
       if (global.db.users.some(v => v.jid == ctx.member) && !global.db.users.find(v => v.jid == ctx.member).whitelist && !ctx.member.startsWith('254') || !ctx.member.startsWith('254')) {
-         sock.reply(ctx.jid, Func.texted('bold', `Sorry @${ctx.member.split`@`[0]}, this group is only for indonesian people and you will removed automatically.`))
+         sock.reply(ctx.jid, Func.texted('bold', `Sorry @${ctx.member.split`@`[0]}, this group is only for Indonesian people and you will be removed automatically.`))
          sock.updateBlockStatus(member, 'block')
          return await Func.delay(2000).then(() => sock.groupParticipantsUpdate(ctx.jid, [ctx.member], 'remove'))
       }
@@ -158,8 +159,8 @@ client.on('group.add', async ctx => {
 
 client.on('group.remove', async ctx => {
    const sock = client.sock
-   const text = `Good bye +tag :)`
-   const groupSet = global.db.groups.find(v => v.jid == ctx.jid)
+   const text = `Goodbye +tag :)`
+   const groupSet = global.db.groups.find(v => v.jid == ctx.jid);
    try {
       var pic = await Func.fetchBuffer(await sock.profilePictureUrl(ctx.member, 'image'))
    } catch {
