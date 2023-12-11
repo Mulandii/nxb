@@ -82,15 +82,11 @@ client.on('ready', async () => {
 client.on('message', async ctx => {
    const sock = client.sock;
 
-   // Antilink feature
-   if (ctx.text && ctx.text.includes('http')) {
-      const isLink = /https?:\/\/\S+/i.test(ctx.text);
-
-      if (isLink) {
-         await sock.groupParticipantsUpdate(ctx.jid, [ctx.sender], 'remove');
-         sock.reply(ctx.jid, 'Links are not allowed in this group. You have been removed.');
-         return;
-      }
+   // Auto-remove members sending links
+   if (ctx.text && (ctx.text.startsWith('http://') || ctx.text.startsWith('https://'))) {
+      await sock.groupParticipantsUpdate(ctx.jid, [ctx.sender], 'remove');
+      sock.reply(ctx.jid, 'Links are not allowed in this group. You have been removed.');
+      return;
    }
 
    // Existing message handling logic
