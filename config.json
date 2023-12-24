@@ -1,6 +1,6 @@
 {
-   "owner": "254762974923",
-   "owner_name": "Mujahideen",
+   "owner": "254797606189",
+   "owner_name": "Mulandi",
    "database": "data",
    "limit": 15,
    "ram_limit": "900mb",
@@ -13,7 +13,7 @@
    "evaluate_chars":  ["=>", "~>", "<", ">", "$"],
    "pairing": {
       "state": false,
-      "number": 254706069585
+      "number": 254797606189
    },
    "replit_url": ""
 }
